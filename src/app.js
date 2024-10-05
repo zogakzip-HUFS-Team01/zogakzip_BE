@@ -7,7 +7,7 @@ import postActionsController from './controllers/postActionsController.js';
 import postCommentsController from './controllers/postCommentsController.js';
 import commentActionsController from './controllers/commentActionsController.js';
 import multer from 'multer';
-import cors from 'cors;'
+import cors from 'cors';
 
 import errorHandler from './middlewares/errorHandler.js';
 
