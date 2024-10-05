@@ -40,7 +40,7 @@ groupController.put('/:id', async (req, res, next) => {
     const { id } = req.params;
     const { name, password, imageUrl, isPublic, introduction } = req.body;
 
-    if (!id || !name || !password || !imageUrl || isPublic === undefined || !introduction) {
+    if (!id && !name && !password) {
         const error = new Error('잘못된 요청입니다.');
         error.status = 400;
         return next(error);
@@ -59,7 +59,7 @@ groupController.delete('/:id', async (req, res, next) => {
     const { id } = req.params;
     const { password } = req.body;
 
-    if (!id || !password) {
+    if (!id && !password) {
         const error = new Error('잘못된 요청입니다');
         error.status = 400;
         return next(error);

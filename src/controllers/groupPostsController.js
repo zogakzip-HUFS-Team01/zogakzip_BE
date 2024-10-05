@@ -8,9 +8,9 @@ groupPostsController.get('/:groupId/posts', async (req, res, next) => {
     const { groupId } = req.params;
     const { page, pageSize, sortBy, keyword, isPublic } = req.query;
 
-//    if (!groupId || !page || !pageSize || !sortBy || !keyword || !isPublic) {
-//        return res.status(400).json({ message: '잘못된 요청입니다' });
-//    }
+    if (!groupId) {
+        return res.status(400).json({ message: '잘못된 요청입니다' });
+    }
 
     try {
         const postList = await groupPostsService.searchPosts({page, pageSize, sortBy, keyword, isPublic, groupId});
