@@ -44,9 +44,20 @@ async function findPosts({ skip, take, orderBy, where }) {
     });
 }
 
+async function plusCount(groupId, addPostCount) {
+    return prisma.group.update({
+        where: {
+            id: parseInt(groupId, 10),
+        },
+        data: {
+            postCount: addPostCount
+        }
+    });
+}
+
 export default {
     save,
     countPosts,
     findPosts,
-
+    plusCount
 }

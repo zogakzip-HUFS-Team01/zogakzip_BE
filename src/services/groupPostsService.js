@@ -1,4 +1,5 @@
 import groupPostsRepository from '../repositories/groupPostsRepository.js';
+import groupRepository from '../repositories/groupRepository.js';
 
 
 function filterPassword(target) {
@@ -21,6 +22,11 @@ function getOrderBy(sortBy) {
 
 async function createPost(groupId, post) {
     const createdPost = await groupPostsRepository.save(groupId, { ...post });
+    const targetGroup = await groupRepository.getById(groupId);
+
+    const addPostCount = targetGroup.postCount + 1;
+
+    await groupPostsRepository.plusCount(groupId, addPostCount);
     return filterPassword(createdPost);
 }
 
